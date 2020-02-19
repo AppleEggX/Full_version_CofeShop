@@ -1,0 +1,301 @@
+﻿@model IEnumerable<CofeWebApplication.ServiceReference1.CoffeeDTO>
+@{
+    ViewData["Title"] = "Home Page";
+    int flag = 0;
+}
+
+<div id="slides-shop" class="cover-slides">
+    <ul class="slides-container">
+        <li class="text-left">
+            <img src="/Content/Image/coffeebanner.jpg" alt="">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12" style="text-shadow: 2px 2px 20px #000000;">
+                        <h1 class="m-b-20" style="text-shadow: 2px 2px 10px #000000;"><strong>Explore Our New Additions</strong></h1>
+                        <p><span class="btn hvr-hover">@Html.ActionLink("See More >", "Index", "Coffees", null, new { Style = "color:White" })</span></p>
+                    </div>
+                </div>
+            </div>
+        </li>
+        <li class="text-center">
+            <img src="/Content/Image/happyharvester.jpg" alt="">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="m-b-20" style="text-shadow: 2px 2px 20px #000000;"><strong>Happy Harvesters Make Better Brews</strong></h1>
+                        <p class="m-b-40" style="text-shadow: 2px 2px 10px #000000;">Learn more about our Happy Harvesters pledge, helping to build a better, sustainable world, one bean at a time</p>
+                        <p><span class="btn hvr-hover">@Html.ActionLink("Learn More >", "Index", "Ethics", null, new { Style = "color:White" })</span></p>
+                    </div>
+                </div>
+            </div>
+        </li>
+        <li class="text-right">
+            <img src="/Content/Image/brewmaster.jpg" alt="">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="m-b-20" style="text-shadow: 2px 2px 20px #000000;"><strong>Become a Master of the Brew</strong></h1>
+                        <p class="m-b-40" style="text-shadow: 2px 2px 10px #000000;">We offer courses from beginner coffee making to industry standard barista training!</p>
+                        <p><span class="btn hvr-hover">@Html.ActionLink("See More >", "Index", "Courses", null, new { Style = "color:White" })</span></p>
+                    </div>
+                </div>
+            </div>
+        </li>
+    </ul>
+    <div class="slides-navigation">
+        <a href="#" class="next"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
+        <a href="#" class="prev"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
+    </div>
+</div>
+
+<!-- Start Products  -->
+<div class="products-box">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="title-all text-center">
+                    <h1>Featured Products</h1>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="special-menu text-center">
+                    <div class="button-group filter-button-group">
+                        <button class="active" data-filter="*">Featured</button>
+                        <button style=" color:#000000">@Html.ActionLink("All", "Index", "Coffees", null, new { Style = "color:Black" })</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="row special-list">
+            
+            @foreach (var item in Model)
+            {
+                IDictionary<string, object> routeValues = new Dictionary<string, object>();
+                routeValues.Add("id", item.Id);
+                if (flag == 4)
+                {
+                    break;
+                }
+                <div class="col-lg-3 col-md-6 special-grid best-seller">
+                    <div class="products-single fix">
+                        <div class="box-img-hover">
+                            <div class="type-lb">
+                                <p class="sale">Sale</p>
+                            </div>
+                            <img src="/Content/Image/product-01.jpg" class="img-fluid" alt="Image">
+                            <div class="mask-icon">
+                                <ul>
+                                    <li>
+                                        @Html.ActionLink(" ", "Details", "Coffees", new RouteValueDictionary(routeValues), new Dictionary<string, object> { { "data-toggle", "tooltip" }, { "data-placement", "right" }, { "class", "fas fa-eye" } })
+                                    </li>
+                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
+                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
+                                </ul>
+                               
+                                @Html.ActionLink("Add To Mug", "AddToBasket", "Coffees", new { id = item.Id }, new { @class = "cart" });
+                            </div>
+                        </div>
+                        <div class="why-text">
+                            <h4> @Html.DisplayFor(modelitem => item.Name)</h4>
+                            <h5> @Html.DisplayFor(modelitem => item.Price)</h5>
+                        </div>
+                    </div>
+                </div>
+                flag++;
+            }
+            </div>
+        </div>
+</div>
+
+<div class="categories-shop">
+    <div class="container">
+        <h2 class="text-center">Quick Categories</h2>
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                <div class="shop-cat-box">
+                    <img class="img-fluid" src="/Content/Image/arabica.jpg" alt="" />
+                    @Html.ActionLink("Aeropress", "Index", "Coffees", new { coffeeType="Aeropress" }, new { @class = "btn hvr-hover" });
+                    @*<a class="btn hvr-hover" href="#">Aeropress</a>*@
+                </div>
+                <div class="shop-cat-box">
+                    <img class="img-fluid" src="/Content/Image/chemex.jpg" alt="" />
+                    @Html.ActionLink("Chemex", "Index", "Coffees", new { coffeeType = "Chemex" }, new { @class = "btn hvr-hover" })
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                <div class="shop-cat-box">
+                    <img class="img-fluid" src="/Content/Image/espresso.jpg" alt="" />
+                    @Html.ActionLink("Espresso", "Index", "Coffees", new { coffeeType = "Espresso" }, new { @class = "btn hvr-hover" });
+                </div>
+                <div class="shop-cat-box">
+                    <img class="img-fluid" src="/Content/Image/frenchpress.jpg" alt="" />
+                    @Html.ActionLink("French Press", "Index", "Coffees", new { coffeeType = "FrenchPress" }, new { @class = "btn hvr-hover" })
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                <div class="shop-cat-box" style="padding-top: 20px">
+                    <img class="img-fluid" src="/Content/Image/pourover.jpg" alt="" style=" width:100%; margin-bottom: 20px" />
+                    @Html.ActionLink("Pour Over", "Index", "Coffees", new { coffeeType = "PourOver" }, new { @class = "btn hvr-hover" })
+                </div>
+                <div class="shop-cat-box">
+                    <img class="img-fluid" src="/Content/Image/decaf.jpg" alt="" />
+                    @Html.ActionLink("Decaf", "Index", "Coffees", new { coffeeType = "Decaf" }, new { @class = "btn hvr-hover" })
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="latest-blog">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="title-all text-center">
+                    <h1>Newest Blog Entries</h1>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet lacus enim.</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-lg-4 col-xl-4">
+                <div class="blog-box">
+                    <div class="blog-img">
+                        <img class="img-fluid" src="/Content/Image/coffee_blog_img_01.jpg" alt="" />
+                    </div>
+                    <div class="blog-content">
+                        <div class="title-blog">
+                            <h3>Fusce in augue non nisi fringilla</h3>
+                            <p>Nulla ut urna egestas, porta libero id, suscipit orci. Quisque in lectus sit amet urna dignissim feugiat. Mauris molestie egestas pharetra. Ut finibus cursus nunc sed mollis. Praesent laoreet lacinia elit id lobortis.</p>
+                        </div>
+                        <ul class="option-blog">
+                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Likes"><i class="far fa-heart"></i></a></li>
+                            <li>
+                                @Html.ActionLink(" ", "Index", "Blog", null, new { @class = "fas fa-eye", data_toggle = "tooltip", data_placement = "right", });
+                            </li>
+                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Comments"><i class="far fa-comments"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4 col-xl-4">
+                <div class="blog-box">
+                    <div class="blog-img">
+                        <img class="img-fluid" src="/Content/Image/coffee_blog_img_02.jpg" alt="" />
+                    </div>
+                    <div class="blog-content">
+                        <div class="title-blog">
+                            <h3>Fusce in augue non nisi fringilla</h3>
+                            <p>Nulla ut urna egestas, porta libero id, suscipit orci. Quisque in lectus sit amet urna dignissim feugiat. Mauris molestie egestas pharetra. Ut finibus cursus nunc sed mollis. Praesent laoreet lacinia elit id lobortis.</p>
+                        </div>
+                        <ul class="option-blog">
+                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Likes"><i class="far fa-heart"></i></a></li>
+                            <li>
+                                @Html.ActionLink(" ", "Index", "Blog", null, new { @class = "fas fa-eye", data_toggle = "tooltip", data_placement = "right", });
+                            </li>
+                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Comments"><i class="far fa-comments"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4 col-xl-4">
+                <div class="blog-box">
+                    <div class="blog-img">
+                        <img class="img-fluid" src="/Content/Image/coffee_blog_img_03.jpg" alt="" />
+                    </div>
+                    <div class="blog-content">
+                        <div class="title-blog">
+                            <h3>Fusce in augue non nisi fringilla</h3>
+                            <p>Nulla ut urna egestas, porta libero id, suscipit orci. Quisque in lectus sit amet urna dignissim feugiat. Mauris molestie egestas pharetra. Ut finibus cursus nunc sed mollis. Praesent laoreet lacinia elit id lobortis.</p>
+                        </div>
+                        <ul class="option-blog">
+                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Likes"><i class="far fa-heart"></i></a></li>
+                            <li>
+                                @Html.ActionLink(" ", "Index", "Blog", null, new { @class = "fas fa-eye", data_toggle = "tooltip", data_placement = "right", });
+                            </li>
+                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Comments"><i class="far fa-comments"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="latest-blog">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="title-all text-center">
+                            <h1>Newest Guides</h1>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet lacus enim.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-lg-4 col-xl-4">
+                        <div class="blog-box">
+                            <div class="blog-img">
+                                <img class="img-fluid" src="/Content/Image/coffee_blog_img_01.jpg" alt="" />
+                            </div>
+                            <div class="blog-content">
+                                <div class="title-blog">
+                                    <h3>Coffee Guide 2020: Pick the perfect brew for you</h3>
+                                    <p>Nulla ut urna egestas, porta libero id, suscipit orci. Quisque in lectus sit amet urna dignissim feugiat. Mauris molestie egestas pharetra. Ut finibus cursus nunc sed mollis. Praesent laoreet lacinia elit id lobortis.</p>
+                                </div>
+                                <ul class="option-blog">
+                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="Likes"><i class="far fa-heart"></i></a></li>
+                                    <li>
+                                        @Html.ActionLink(" ", "Index", "Guides", null, new { @class = "fas fa-eye", data_toggle = "tooltip", data_placement = "right", });
+                                    </li>
+                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="Comments"><i class="far fa-comments"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4 col-xl-4">
+                        <div class="blog-box">
+                            <div class="blog-img">
+                                <img class="img-fluid" src="/Content/Image/coffee_blog_img_02.jpg" alt="" />
+                            </div>
+                            <div class="blog-content">
+                                <div class="title-blog">
+                                    <h3>How to set up a C#ffee Franchise</h3>
+                                    <p>Nulla ut urna egestas, porta libero id, suscipit orci. Quisque in lectus sit amet urna dignissim feugiat. Mauris molestie egestas pharetra. Ut finibus cursus nunc sed mollis. Praesent laoreet lacinia elit id lobortis.</p>
+                                </div>
+                                <ul class="option-blog">
+                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="Likes"><i class="far fa-heart"></i></a></li>
+                                    <li>
+                                        @Html.ActionLink(" ", "Index", "Guides", null, new { @class = "fas fa-eye", data_toggle="tooltip",data_placement="right", });
+                                    </li>
+                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="Comments"><i class="far fa-comments"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4 col-xl-4">
+                        <div class="blog-box">
+                            <div class="blog-img">
+                                <img class="img-fluid" src="/Content/Image/coffee_blog_img_03.jpg" alt="" />
+                            </div>
+                            <div class="blog-content">
+                                <div class="title-blog">
+                                    <h3>2020 Course Guide</h3>
+                                    <p>Nulla ut urna egestas, porta libero id, suscipit orci. Quisque in lectus sit amet urna dignissim feugiat. Mauris molestie egestas pharetra. Ut finibus cursus nunc sed mollis. Praesent laoreet lacinia elit id lobortis.</p>
+                                </div>
+                                <ul class="option-blog">
+                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="Likes"><i class="far fa-heart"></i></a></li>
+                                    <li> 
+                                        @Html.ActionLink(" ", "Index", "Guides", null, new { @class = "fas fa-eye", data_toggle = "tooltip", data_placement = "right", });
+                                    </li>
+                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="Comments"><i class="far fa-comments"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

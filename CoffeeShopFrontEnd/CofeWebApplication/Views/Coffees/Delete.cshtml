@@ -1,0 +1,92 @@
+﻿@model CofeWebApplication.ServiceReference1.CoffeeDTO
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+
+    <div class=" container">
+        <h2>Delete</h2>
+
+        <h3>Are you sure you want to delete this?</h3>
+        <div>
+            <h4>Coffee</h4>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Name)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Name)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Origin)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Origin)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.CoffeeType)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.CoffeeType)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Rating)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Rating)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Description)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Description)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Strength)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Strength)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Stock)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Stock)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Price)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Price)
+                </dd>
+
+            </dl>
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-actions no-color">
+                    <input type="submit" value="Delete" class="btn btn-default" /> |
+                    @Html.ActionLink("Back to List", "Index")
+                </div>
+            }
+        </div>
+        </div>

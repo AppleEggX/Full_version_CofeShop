@@ -1,0 +1,42 @@
+﻿@model CofeWebApplication.Models.LayoutViewModel
+@{
+    ViewBag.Title = "_TopMenuVModel";
+    int currentBasketID;
+    if (Request.Cookies["Basket_id"] != null)
+    {
+        currentBasketID = Int32.Parse(Request.Cookies["Basket_id"].Value);
+    }
+    else
+    {
+        currentBasketID = 0;
+    }
+}
+
+<li class="cart-box">
+    <ul class="cart-list">
+        @foreach (var item in Model.basketItemDTOs)
+        {
+            if (item.Basket_Id != currentBasketID)
+            {
+                continue;
+            }
+            <li>
+                <a href="#" class="photo"><img src="/Content/Image/product-01.jpg" class="cart-thumb" alt="" /></a>
+                <h6>@Html.ActionLink(item.Product_name, "Details", "Basket", new { id = item.BasketItemId }, null)</h6>
+                <p>@item.Quantity x - <span class="price">@item.TotalPrice</span></p>
+            </li>
+        }
+        @foreach (var basket in Model.basketDTOs)
+        {
+            if (basket.Id == currentBasketID)
+            {
+                <li class="total">
+                    @Html.ActionLink("VIEW CART", "Index", "Basket", new { id = basket.Id }, new { @class = "btn btn-default hvr-hover btn-cart" })
+                    @*<a href="#" class="btn btn-default hvr-hover btn-cart">VIEW CART</a>*@
+                    <span class="float-right"><strong>Total: @basket.SumPrice </strong></span> @*needs either database link or total calculation script*@
+                </li>
+            }
+        }
+    </ul>
+</li>
+

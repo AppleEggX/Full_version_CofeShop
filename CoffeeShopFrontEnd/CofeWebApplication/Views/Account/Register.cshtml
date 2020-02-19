@@ -1,0 +1,56 @@
+﻿@model CofeWebApplication.Models.RegisterViewModel
+@{
+    ViewBag.Title = "Register";
+}
+
+<<div class="jumbotron-fluid">
+    <h2 class="text-center" style="color:antiquewhite; text-shadow: 2px 2px 10px #000000; padding-top: 75px; font-size: 3.3vw">Register to C#ffee</h2>
+</div>
+
+
+<div class="container" style="padding-top: 50px">
+    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+        <h4>We just need a couple of details...</h4>
+        <hr />
+
+
+        @Html.ValidationSummary("", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+            </div>
+        </div>
+        <!--Select the Role Type for the User-->
+        @*<div class="form-group">
+                @Html.Label("Select Your User Type", new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.DropDownList("Name")
+                </div>
+        </div>*@
+        <!--Ends Here-->
+        <div class="form-group">
+            @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" class="btn btn-default" value="Register" />
+            </div>
+        </div>
+    }
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+</div>

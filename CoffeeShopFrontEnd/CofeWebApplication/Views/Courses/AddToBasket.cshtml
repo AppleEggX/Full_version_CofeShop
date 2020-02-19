@@ -1,0 +1,55 @@
+﻿@model CofeWebApplication.Models.CourseViewModels
+@{
+    ViewBag.Title = "AddToBasket";
+}
+<div class="jumbotron-fluid">
+    <h2 class="text-center" style="color:antiquewhite; text-shadow: 2px 2px 15px #000000; padding-top: 25px; font-size: 3.3vw">Add to Mug</h2>
+    <h3 class="text-center" style="color:antiquewhite; text-shadow: 2px 2px 10px #000000;"> @ViewBag.courseInfo.Name </h3>
+</div>
+<div class="container" style="padding-top: 50px;">
+    <h4>Just a few more steps to get your delicious C#ffee...</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-8">
+            <dl class="dl-horizontal">
+                <dt>
+                    Name
+                </dt>
+
+                <dd>
+                    @ViewBag.courseInfo.Name
+                </dd>
+
+                <dt>
+                    Price
+                </dt>
+
+                <dd>
+                    <span> £@ViewBag.courseInfo.Price </span>
+                </dd>
+                @*@using (Html.BeginForm("AddToBasketConfirmed", FormMethod.Post))
+                    {*@
+                <div class="form-group">
+
+                </div>
+                @*}*@
+
+            </dl>
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                <div>
+                    @Html.Editor("Quantity") <br />
+                </div>
+                <div class="form-actions no-color">
+                    <input type="submit" value="Add To Basket" class="btn btn-default" /> |
+                    @Html.ActionLink("Back to List", "Index")
+                </div>
+            }
+        </div>
+        <div class=" col-md-4">
+            <img src="~/Content/Image/AddToMug.jpg" />
+        </div>
+    </div>
+</div>

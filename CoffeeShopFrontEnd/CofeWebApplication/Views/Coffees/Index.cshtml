@@ -1,0 +1,104 @@
+﻿@model IEnumerable<CofeWebApplication.ServiceReference1.CoffeeDTO>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="jumbotron-fluid">
+    <h2 class="text-center" style="color:antiquewhite; text-shadow: 2px 2px 10px #000000; padding-top: 75px; font-size: 3.3vw">Our C#ffees</h2>
+</div>
+<div class="container">
+    <p>
+        @Html.ActionLink("Create New", "Create")
+
+        @using (Html.BeginForm("Index", "Coffees", FormMethod.Get))
+        {
+        <p>
+            Coffee Type: @Html.DropDownList("coffeeType", "All")
+            Title: @Html.TextBox("searchName") @*<br />*@
+            <input type="submit" value="Filter" />
+        </p>
+        }
+        <table class="table">
+            <tr>
+                <th>
+
+                </th>
+                <th>
+                    C#ffee Name
+                </th>
+                <th>
+                    Rating
+                </th>
+                <th>
+                    C#ffee Type
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Stock)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Price)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <img src="~/Content/Image/product-01.jpg" />
+                    </td>
+                    <td style="padding-top: 100px">
+                        <strong> @Html.DisplayFor(modelItem => item.Name)</strong>
+                    </td>
+                    <td style="padding-top: 100px">
+                        @Html.DisplayFor(modelItem => item.Rating) <span>/ 5</span>
+                    </td>
+                    <td style="padding-top: 100px">
+                        @Html.DisplayFor(modelItem => item.CoffeeType)
+                    </td>
+                    <td style="padding-top: 100px">
+                        @if (item.Stock == 0)
+                        {
+                            <span style=" color: red"> Out Of Stock </span>
+
+                        }
+                        else if (item.Stock < 30)
+                        {
+                            <span style=" color: red">  @Html.DisplayFor(modelItem => item.Stock) </span>
+                            <p> Low stock! More arriving soon!</p>
+                        }
+                        else
+                        {
+                            @Html.DisplayFor(modelItem => item.Stock)
+                        }
+                    </td>
+                    <td style="padding-top: 100px">
+                        <span>£@Html.DisplayFor(modelItem => item.Price)</span>
+                    </td>
+
+                    <td style="padding-top: 100px">
+                        @if (User.IsInRole("Admin"))
+                        {
+                            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) <br />;
+                            @Html.ActionLink("Delete", "Delete", new { id = item.Id });
+                        }
+
+                        @Html.ActionLink("Details", "Details", new { id = item.Id })
+
+                        @if (!User.IsInRole("Admin"))
+                        {
+                            if (item.Stock > 0)
+                            {
+                                <span> |</span>
+                                @Html.ActionLink("Add to Mug", "AddToBasket", new { id = item.Id })
+                            }
+                        }
+
+
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>

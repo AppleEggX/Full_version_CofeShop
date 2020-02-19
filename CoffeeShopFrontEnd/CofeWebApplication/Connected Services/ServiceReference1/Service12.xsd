@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Pocos" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Pocos" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:56155/Service1.svc?xsd=xsd4" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:complexType name="Basket">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BasketItems" nillable="true" type="tns:ArrayOfBasketItem" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Paid" type="xs:boolean" />
+      <xs:element minOccurs="0" name="SumPrice" type="xs:decimal" />
+      <xs:element minOccurs="0" name="User" nillable="true" type="tns:User" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Basket" nillable="true" type="tns:Basket" />
+  <xs:complexType name="ArrayOfBasketItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="BasketItem" nillable="true" type="tns:BasketItem" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfBasketItem" nillable="true" type="tns:ArrayOfBasketItem" />
+  <xs:complexType name="BasketItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Basket" nillable="true" type="tns:Basket" />
+      <xs:element minOccurs="0" name="BasketItemId" type="xs:int" />
+      <xs:element minOccurs="0" name="Product" nillable="true" type="tns:Product" />
+      <xs:element minOccurs="0" name="ProductType" type="tns:ProductType" />
+      <xs:element minOccurs="0" name="Quantity" type="xs:int" />
+      <xs:element minOccurs="0" name="TotalPrice" type="xs:decimal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BasketItem" nillable="true" type="tns:BasketItem" />
+  <xs:complexType name="Product">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Price" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Rating" type="xs:double" />
+      <xs:element minOccurs="0" name="Type" type="tns:ProductType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Product" nillable="true" type="tns:Product" />
+  <xs:simpleType name="ProductType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Coffee" />
+      <xs:enumeration value="Course" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="ProductType" nillable="true" type="tns:ProductType" />
+  <xs:complexType name="User">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Admin" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Baskets" nillable="true" type="tns:ArrayOfBasket" />
+      <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Subscriptions" nillable="true" type="tns:ArrayOfSubscription" />
+      <xs:element minOccurs="0" name="Username" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="User" nillable="true" type="tns:User" />
+  <xs:complexType name="ArrayOfBasket">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Basket" nillable="true" type="tns:Basket" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfBasket" nillable="true" type="tns:ArrayOfBasket" />
+  <xs:complexType name="ArrayOfSubscription">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Subscription" nillable="true" type="tns:Subscription" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSubscription" nillable="true" type="tns:ArrayOfSubscription" />
+  <xs:complexType name="Subscription">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Coffee" nillable="true" type="tns:Coffee" />
+      <xs:element minOccurs="0" name="EndDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="PercentDiscount" type="xs:double" />
+      <xs:element minOccurs="0" name="Quantity" type="xs:int" />
+      <xs:element minOccurs="0" name="StartDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="User" nillable="true" type="tns:User" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Subscription" nillable="true" type="tns:Subscription" />
+  <xs:complexType name="Coffee">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:Product">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="CoffeeType" type="tns:CoffeeType" />
+          <xs:element minOccurs="0" name="Imgurl" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Origin" type="tns:CountryOfOrigin" />
+          <xs:element minOccurs="0" name="Stock" type="xs:int" />
+          <xs:element minOccurs="0" name="Strength" type="xs:int" />
+          <xs:element minOccurs="0" name="Subscriptions" nillable="true" type="tns:ArrayOfSubscription" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Coffee" nillable="true" type="tns:Coffee" />
+  <xs:simpleType name="CoffeeType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Arabica" />
+      <xs:enumeration value="Robusta" />
+      <xs:enumeration value="Liberica" />
+      <xs:enumeration value="Excels" />
+      <xs:enumeration value="Aeropress" />
+      <xs:enumeration value="Chemex" />
+      <xs:enumeration value="Espresso" />
+      <xs:enumeration value="FrenchPress" />
+      <xs:enumeration value="PourOver" />
+      <xs:enumeration value="Decaf" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="CoffeeType" nillable="true" type="tns:CoffeeType" />
+  <xs:simpleType name="CountryOfOrigin">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="CountryOfOrigin" />
+      <xs:enumeration value="Angola" />
+      <xs:enumeration value="Bolivia" />
+      <xs:enumeration value="China" />
+      <xs:enumeration value="Colombia" />
+      <xs:enumeration value="Cuba" />
+      <xs:enumeration value="Ecuador" />
+      <xs:enumeration value="Ethiopia" />
+      <xs:enumeration value="Guatemala" />
+      <xs:enumeration value="Kenya" />
+      <xs:enumeration value="Nicaragua" />
+      <xs:enumeration value="Tanzania" />
+      <xs:enumeration value="Venezuela" />
+      <xs:enumeration value="Vietnam" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="CountryOfOrigin" nillable="true" type="tns:CountryOfOrigin" />
+  <xs:simpleType name="CourseType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Barista" />
+      <xs:enumeration value="HomeBrew" />
+      <xs:enumeration value="LatteArt" />
+      <xs:enumeration value="SensorySkills" />
+      <xs:enumeration value="Roasting" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="CourseType" nillable="true" type="tns:CourseType" />
+  <xs:simpleType name="Difficulty">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Beginner" />
+      <xs:enumeration value="Intermediate" />
+      <xs:enumeration value="Advanced" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="Difficulty" nillable="true" type="tns:Difficulty" />
+  <xs:complexType name="Course">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:Product">
+        <xs:sequence>
+          <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="AvailableStartDates" nillable="true" type="q1:ArrayOfdateTime" />
+          <xs:element minOccurs="0" name="CourseType" type="tns:CourseType" />
+          <xs:element minOccurs="0" name="Difficulty" type="tns:Difficulty" />
+          <xs:element minOccurs="0" name="Length" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Course" nillable="true" type="tns:Course" />
+</xs:schema>

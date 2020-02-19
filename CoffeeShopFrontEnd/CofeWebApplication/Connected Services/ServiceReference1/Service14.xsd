@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Services" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Services" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:56155/Service1.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Pocos" />
+  <xs:import schemaLocation="http://localhost:56155/Service1.svc?xsd=xsd4" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:complexType name="ArrayOfBasketDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="BasketDTO" nillable="true" type="tns:BasketDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfBasketDTO" nillable="true" type="tns:ArrayOfBasketDTO" />
+  <xs:complexType name="BasketDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Paid" type="xs:boolean" />
+      <xs:element minOccurs="0" name="SumPrice" type="xs:decimal" />
+      <xs:element minOccurs="0" name="User_Id" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BasketDTO" nillable="true" type="tns:BasketDTO" />
+  <xs:complexType name="BasketItemDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BasketItemId" type="xs:int" />
+      <xs:element minOccurs="0" name="Basket_Id" type="xs:int" />
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Pocos" minOccurs="0" name="ProductType" type="q1:ProductType" />
+      <xs:element minOccurs="0" name="Product_Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Product_name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Quantity" type="xs:int" />
+      <xs:element minOccurs="0" name="TotalPrice" type="xs:decimal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BasketItemDTO" nillable="true" type="tns:BasketItemDTO" />
+  <xs:complexType name="ArrayOfCoffeeDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CoffeeDTO" nillable="true" type="tns:CoffeeDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCoffeeDTO" nillable="true" type="tns:ArrayOfCoffeeDTO" />
+  <xs:complexType name="CoffeeDTO">
+    <xs:sequence>
+      <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Pocos" minOccurs="0" name="CoffeeType" type="q2:CoffeeType" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Pocos" minOccurs="0" name="Origin" type="q3:CountryOfOrigin" />
+      <xs:element minOccurs="0" name="Price" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Rating" type="xs:double" />
+      <xs:element minOccurs="0" name="Stock" type="xs:int" />
+      <xs:element minOccurs="0" name="Strength" type="xs:int" />
+      <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Pocos" minOccurs="0" name="Type" type="q4:ProductType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CoffeeDTO" nillable="true" type="tns:CoffeeDTO" />
+  <xs:complexType name="ArrayOfCourseDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CourseDTO" nillable="true" type="tns:CourseDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCourseDTO" nillable="true" type="tns:ArrayOfCourseDTO" />
+  <xs:complexType name="CourseDTO">
+    <xs:sequence>
+      <xs:element xmlns:q5="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="AvailableStartDates" nillable="true" type="q5:ArrayOfdateTime" />
+      <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Pocos" minOccurs="0" name="CourseType" type="q6:CourseType" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/Pocos" minOccurs="0" name="Difficulty" type="q7:Difficulty" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Length" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Price" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Rating" type="xs:double" />
+      <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Pocos" minOccurs="0" name="Type" type="q8:ProductType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CourseDTO" nillable="true" type="tns:CourseDTO" />
+  <xs:complexType name="ProductDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Price" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Rating" type="xs:double" />
+      <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/Pocos" minOccurs="0" name="Type" type="q9:ProductType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ProductDTO" nillable="true" type="tns:ProductDTO" />
+  <xs:complexType name="ArrayOfSubscriptionDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SubscriptionDTO" nillable="true" type="tns:SubscriptionDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSubscriptionDTO" nillable="true" type="tns:ArrayOfSubscriptionDTO" />
+  <xs:complexType name="SubscriptionDTO">
+    <xs:sequence>
+      <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/Pocos" minOccurs="0" name="Coffee" nillable="true" type="q10:Coffee" />
+      <xs:element minOccurs="0" name="EndDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="PercentDiscount" type="xs:double" />
+      <xs:element minOccurs="0" name="Quantity" type="xs:int" />
+      <xs:element minOccurs="0" name="StartDate" type="xs:dateTime" />
+      <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/Pocos" minOccurs="0" name="User" nillable="true" type="q11:User" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SubscriptionDTO" nillable="true" type="tns:SubscriptionDTO" />
+  <xs:complexType name="ArrayOfUserDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="UserDTO" nillable="true" type="tns:UserDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfUserDTO" nillable="true" type="tns:ArrayOfUserDTO" />
+  <xs:complexType name="UserDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Admin" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Username" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UserDTO" nillable="true" type="tns:UserDTO" />
+  <xs:complexType name="ArrayOfBasketItemDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="BasketItemDTO" nillable="true" type="tns:BasketItemDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfBasketItemDTO" nillable="true" type="tns:ArrayOfBasketItemDTO" />
+  <xs:complexType name="ArrayOfProductDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ProductDTO" nillable="true" type="tns:ProductDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfProductDTO" nillable="true" type="tns:ArrayOfProductDTO" />
+</xs:schema>
